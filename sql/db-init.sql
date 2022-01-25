@@ -3,9 +3,32 @@ CREATE DATABASE IF NOT EXISTS auth;
 
 USE auth;
 
+DROP TABLE IF EXISTS users;
 CREATE TABLE users(
 	id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
     `password` VARCHAR(64) NOT NULL
-)ENGINE=INNODB;
+);
+
+DROP TABLE IF EXISTS roles;
+CREATE TABLE roles(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    `name` VARCHAR(45)
+);
+
+INSERT INTO roles VALUES
+(1, 'USER'),
+(2, 'ADMIN');
+
+DROP TABLE IF EXISTS users_roles;
+CREATE TABLE users_roles(
+	user_id INT NOT NULL,
+    role_id INT NOT NULL,
+    FOREIGN KEY(user_id) REFERENCES users(id),
+    FOREIGN KEY(role_id) REFERENCES roles(id)
+);
+
+
+
+
 

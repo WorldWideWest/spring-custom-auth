@@ -25,12 +25,16 @@
                 <tr>
                     <th>User ID</th>
                     <th>Username</th>
+                    <th>Roles</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="user: ${listUsers}">
                     <td th:text="${user.id}">User ID</td>
                     <td th:text="${user.username}">Username</td>
+                    <td th:text="${user.roles}">Roles</td>
+                    <td><a th:href="@{'/edit/' + ${user.id}} " th:text="Edit"></a></td>
                 </tr>
             </tbody>
         </table>
